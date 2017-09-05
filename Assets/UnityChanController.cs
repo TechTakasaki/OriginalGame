@@ -33,6 +33,8 @@ public class UnityChanController : MonoBehaviour
     //右ボタン押下の判定（追加）
     private bool isRButtonDown = false;
 
+    public Transform target;
+
     Vector3 start;
     Vector3 otherPos;
 
@@ -59,6 +61,8 @@ public class UnityChanController : MonoBehaviour
 
     // Update is called once per frame
     void Update () {
+
+        
 
         //ゲーム終了ならUnityちゃんの動きを減衰する（追加）
         if (this.isEnd)
@@ -116,6 +120,9 @@ public class UnityChanController : MonoBehaviour
             //stateTextにGAME CLEARを表示（追加）
             this.stateText.GetComponent<Text>().text = "CLEAR!!";
         }
+        //スタート地点から現在地点までの距離を求め、UIに表示する
+        float distance = CalculateDistance();
+        Distance.text = distance.ToString("F4");
     }
     
     //ジャンプボタンを押した場合の処理（追加）
@@ -127,14 +134,15 @@ public class UnityChanController : MonoBehaviour
             this.myRigidbody.AddForce(this.transform.up * this.upForce);
         }
     }
-
     
-    public Transform other;
-    void Example()
+    
+
+    //スタート時点から現在の距離を求める
+    float CalculateDistance()
     {
-        float dist = Vector3.Distance(start, otherPos);
-        print("Distance to other: " + dist);
-        
+        float distance = Vector3.Distance(start, transform.position);
+        Debug.Log("Distance: " + distance);
+        return distance;
     }
 
 

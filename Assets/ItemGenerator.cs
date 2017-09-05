@@ -19,7 +19,7 @@ public class ItemGenerator : MonoBehaviour {
     void Start()
     {
         //一定の距離ごとにアイテムを生成
-        for (int i = startPos; i < goalPos; i += 15)
+        for (int i = startPos; i < goalPos; i += 30)
         {
             //どのアイテムを出すのかをランダムに設定
             int num = Random.Range(0, 10);
